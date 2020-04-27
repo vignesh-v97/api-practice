@@ -3,8 +3,8 @@
     <div class="row">
       <div class="col-sm-4" *ngFor="let country of countries">
         <div class="card">
-          <div (click)="getNature()" class="card-body">
-            <h6>{{ country.name }} <span>{{ country.alpha2Code }}</span></h6>
+          <div (click)="getNature(country.name)" class="card-body">
+            <h6 [title]="country.name +' '+ 'weather'">{{ country.name }} <span>{{ country.alpha2Code }}</span></h6>
             <img class="imageResize" src="{{ country.flag }}">
           </div>
         </div>

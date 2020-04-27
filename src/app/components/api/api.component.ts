@@ -1,5 +1,6 @@
 import { ApiService } from './../../service/api.service'
 import { Component, OnInit } from '@angular/core';
+import { api } from 'src/app/api';
 
 @Component({
   selector: 'app-api',
@@ -18,16 +19,11 @@ export class ApiComponent implements OnInit {
   getdata(){
     this.ApiService.getCountries().subscribe((country: {}) => {
       this.countries = country;
-      this.countries.forEach((x) => {
-        console.log(x.name);
-        this.ApiService.getweather(x.name).subscribe((data) => {
-          console.log(data);
-        })
-      });
     });
   }
-  getNature() {
-    alert('am clicked');
+  getNature = (countryName) => {
+    this.ApiService.getweather(countryName).subscribe((data: api) => {
+      alert(data.main.temp);
+  });
   }
-
 }
