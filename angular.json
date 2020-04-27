@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "api-practice"
+    }
+  },
+  "defaultProject": "api-practice",
+  "cli": {
+    "analytics": "cf7d58fc-194c-41c2-b694-82b146e9ed5f"
+  }
 }
