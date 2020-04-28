@@ -16,7 +16,7 @@ export class ApiComponent implements OnInit {
   ngOnInit() {
     // this.countries = this.ApiService.getCountries();
   }
-  getdata(){
+  getdata = () =>{
     this.ApiService.getCountries().subscribe((country: {}) => {
       this.countries = country;
     });

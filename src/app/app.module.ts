@@ -5,17 +5,20 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ApiComponent } from './components/api/api.component';
-import { from } from 'rxjs';
+import { ReactiveFormsModule } from "@angular/forms";
+import { FormComponent } from './components/form/form.component'
 
 @NgModule({
   declarations: [
     AppComponent,
-    ApiComponent
+    ApiComponent,
+    FormComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
