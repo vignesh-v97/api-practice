@@ -10,13 +10,10 @@ export class FormComponent implements OnInit {
   userForm:FormGroup;
   num: boolean = false;
   value: boolean = false;
-  // americavalue : boolean = false;
-  city: boolean = false;
-  cityusa:boolean = false;
-  reject:boolean = false;
-  rejectusa:boolean = false;
+  americavalue : boolean = false;
   nation;
   india;
+  newyork;
   constructor() {
     this.userForm = new FormGroup({
       'name': new FormControl(null, Validators.required),
@@ -26,7 +23,7 @@ export class FormComponent implements OnInit {
       'status':new FormControl(),
       'favcolour': new FormArray([
         new FormGroup({
-          'yellow': new FormControl()
+          'Black': new FormControl()
         }),
         new FormGroup({
           'white': new FormControl()
@@ -34,16 +31,17 @@ export class FormComponent implements OnInit {
       ]),
       'nation': new FormControl(1),
       'india': new FormControl(1),
+      'newyork' : new FormControl(1)
     });
     this.userForm.get("nation").valueChanges.subscribe(data =>{
       if(data == "india"){
         this.num = true;
         this.userForm.addControl("india", new FormControl(1));
-        this.userForm.removeControl("american");
+        this.userForm.removeControl("america");
       }
       else{
         this.num = false;
-        this.userForm.addControl("american", new FormControl(1));
+        this.userForm.addControl("america", new FormControl(1));
         this.userForm.removeControl("india");
       }
     });
@@ -59,18 +57,18 @@ export class FormComponent implements OnInit {
         this.userForm.removeControl("Tamilnadu");
       }
     });
-    // this.userForm.get("india").valueChanges.subscribe(data =>{
-    //   if(data == "Tamilnadu") {
-    //     this.americavalue = true;
-    //     this.userForm.addControl("Tamilnadu", new FormControl(1));
-    //     this.userForm.removeControl("kerala");
-    //   }
-    //   else{
-    //     this.americavalue = false;
-    //     this.userForm.addControl("kerala", new FormControl(1));
-    //     this.userForm.removeControl("Tamilnadu");
-    //   }
-    // });
+    this.userForm.get("newyork").valueChanges.subscribe(data =>{
+      if(data == "New-york") {
+        this.americavalue = true;
+        this.userForm.addControl("New-york", new FormControl(1));
+        this.userForm.removeControl("California");
+      }
+      else{
+        this.americavalue = false;
+        this.userForm.addControl("California", new FormControl(1));
+        this.userForm.removeControl("New york");
+      }
+    });
   }
 
   ngOnInit(): void {
