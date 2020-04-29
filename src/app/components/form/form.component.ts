@@ -13,7 +13,7 @@ export class FormComponent implements OnInit {
   americavalue : boolean = false;
   nation;
   india;
-  newyork;
+  americaState;
   constructor() {
     this.userForm = new FormGroup({
       'name': new FormControl(null, Validators.required),
@@ -31,7 +31,7 @@ export class FormComponent implements OnInit {
       ]),
       'nation': new FormControl(1),
       'india': new FormControl(1),
-      'newyork' : new FormControl(1)
+      'americaState' : new FormControl(1)
     });
     this.userForm.get("nation").valueChanges.subscribe(data =>{
       if(data == "india"){
@@ -48,25 +48,25 @@ export class FormComponent implements OnInit {
     this.userForm.get("india").valueChanges.subscribe(data =>{
       if(data == "Tamilnadu") {
         this.value = true;
-        this.userForm.addControl("Tamilnadu", new FormControl(1));
+        this.userForm.addControl("TamilnaduCity", new FormControl(1));
         this.userForm.removeControl("kerala");
       }
       else{
         this.value = false;
         this.userForm.addControl("kerala", new FormControl(1));
-        this.userForm.removeControl("Tamilnadu");
+        this.userForm.removeControl("TamilnaduCity");
       }
     });
-    this.userForm.get("newyork").valueChanges.subscribe(data =>{
+    this.userForm.get("americaState").valueChanges.subscribe(data =>{
       if(data == "New-york") {
         this.americavalue = true;
-        this.userForm.addControl("New-york", new FormControl(1));
+        this.userForm.addControl("newyork-city", new FormControl(1));
         this.userForm.removeControl("California");
       }
       else{
         this.americavalue = false;
         this.userForm.addControl("California", new FormControl(1));
-        this.userForm.removeControl("New york");
+        this.userForm.removeControl("newyork-city");
       }
     });
   }

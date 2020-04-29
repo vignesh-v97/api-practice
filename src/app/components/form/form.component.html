@@ -4,7 +4,7 @@
           <label class="col-form-label">Name</label>
           <input formControlName="name" type="text" class="form-control" placeholder="Name" />
         </div>
-        <div class="form-group col-sm-4 ">
+        <div class="form-group col-sm-4">
           <label class="col-form-label">Email</label>
           <input formControlName="email" type="email" class="form-control" placeholder="email" />
         </div>
@@ -14,23 +14,23 @@
         </div>
         <!-- COUNTRY / STATE DROPDOWN -->
         <div class="">
-          <div class="form-group col-sm-4 ">
+          <div class="form-group col-sm-4">
             <label class="col-form-label">Country</label>
             <select formControlName="nation" class="form-control">
               <option value="india">India</option>
               <option value="america">America</option>
             </select>
           </div>
-          <div class="form-group col-sm-4 " *ngIf="this.num == true">
+          <div class="form-group col-sm-4" *ngIf="this.num == true">
             <label class="col-form-label">state</label>
             <select formControlName="india" class="form-control">
               <option value="Tamilnadu">Tamilnadu</option>
               <option value="Kerala">Kerala</option>
             </select>
           </div>
-          <div class="form-group col-sm-4 " *ngIf="this.num == false">
+          <div class="form-group col-sm-4" *ngIf="this.num == false">
             <label class="col-form-label">state</label>
-            <select class="form-control" formControlName="newyork">
+            <select class="form-control" formControlName="americaState">
               <option value="New-york">New york</option>
               <option value="California">California</option>
             </select>
@@ -40,14 +40,14 @@
 
         <!-- (INDIA)CITY DROPDOWN -->
         <div class="">
-          <div class="form-group col-sm-4 " *ngIf="this.value == true">
+          <div class="form-group col-sm-4" *ngIf="this.value == true">
             <label class="col-form-label">City</label>
-            <select formControlName="Tamilnadu" class="form-control">
+            <select formControlName="TamilnaduCity" class="form-control">
               <option value="madurai">madurai</option>
               <option value="siavagangai">sivagangai</option>
             </select>
           </div>
-          <div class="form-group col-sm-4 " *ngIf="this.value == false">
+          <div class="form-group col-sm-4" *ngIf="this.value == false">
             <label class="col-form-label">City</label>
             <select class="form-control">
               <option value="keralaOne">keralaOne</option>
@@ -59,26 +59,26 @@
 
         <!-- (AMERICA)CITY DROPDOWN -->
         <div class="">
-          <div class="form-group col-sm-4 " *ngIf="this.americavalue == true">
+          <div class="form-group col-sm-4" *ngIf="this.americavalue == true">
             <label class="col-form-label">City</label>
-            <select formControlName="newyork" class="form-control">
+            <select formControlName="newyork-city" class="form-control">
               <option value="newyorkOne">newyorkOne</option>
               <option value="newyorkTwo">newyorkTwo</option>
             </select>
           </div>
-          <!-- <div class="form-group col-sm-4 "*ngIf="this.americavalue == false">
+          <div class="form-group col-sm-4 "*ngIf="this.americavalue == false">
                 <label class="col-form-label">City</label>
                 <select class="form-control">
                   <option value="CaliforniaOne">CaliforniaOne</option>
                   <option value="CaliforniaTwo">CaliforniaTwo</option>
                 </select>
-              </div> -->
+          </div>
         </div>
         <!-- ENDED -->
 
 
         <!-- RADIO buttons and CHECKBOX -->
-        <div class="form-group col-sm-4 ">
+        <div class="form-group col-sm-4">
           <label class="col-form-label">Gender</label>
           <div class="">
             <div class="form-check form-check-inline">
@@ -91,7 +91,7 @@
             </div>
           </div>
         </div>
-        <div class="form-group col-sm-4 ">
+        <div class="form-group col-sm-4">
           <label class="col-form-label">Martial Status</label>
           <div class="">
             <div class="form-check form-check-inline">
@@ -130,6 +130,5 @@
             </div>
           </div>
         </div>
-
       </form>
     </div>
