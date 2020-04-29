@@ -11,9 +11,6 @@ export class FormComponent implements OnInit {
   num: boolean = false;
   value: boolean = false;
   americavalue : boolean = false;
-  nation;
-  india;
-  americaState;
   constructor() {
     this.userForm = new FormGroup({
       'name': new FormControl(null, Validators.required),
