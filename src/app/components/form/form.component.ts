@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl,FormArray,Validators,ReactiveFormsModule} from "@angular/forms";
+import { ApiService } from 'src/app/service/api.service';
 
 @Component({
   selector: 'app-form',
@@ -8,71 +9,53 @@ import { FormGroup, FormControl,FormArray,Validators,ReactiveFormsModule} from "
 })
 export class FormComponent implements OnInit {
   userForm:FormGroup;
-  num: boolean = false;
-  value: boolean = false;
-  americavalue : boolean = false;
-  constructor() {
+  constructor(public apiService:ApiService) {
     this.userForm = new FormGroup({
       'name': new FormControl(null, Validators.required),
       'email': new FormControl(null, [Validators.required, Validators.email,Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]),
-      'Password': new FormControl(),
-      'Gender': new FormControl(),
-      'status':new FormControl(),
-      'favcolour': new FormArray([
+      'Gender': new FormControl("Male", Validators.required),
+      'favFood': new FormArray([
         new FormGroup({
-          'Black': new FormControl()
+          'indian': new FormControl(true, Validators.required)
         }),
         new FormGroup({
-          'white': new FormControl()
+          'chinese': new FormControl(false, Validators.required)
         }),
       ]),
-      'nation': new FormControl(1),
-      'india': new FormControl(1),
-      'americaState' : new FormControl(1)
-    });
-    this.userForm.get("nation").valueChanges.subscribe(data =>{
-      if(data == "india"){
-        this.num = true;
-        this.userForm.addControl("india", new FormControl(1));
-        this.userForm.removeControl("america");
-      }
-      else{
-        this.num = false;
-        this.userForm.addControl("america", new FormControl(1));
-        this.userForm.removeControl("india");
-      }
-    });
-    this.userForm.get("india").valueChanges.subscribe(data =>{
-      if(data == "Tamilnadu") {
-        this.value = true;
-        this.userForm.addControl("TamilnaduCity", new FormControl(1));
-        this.userForm.removeControl("kerala");
-      }
-      else{
-        this.value = false;
-        this.userForm.addControl("kerala", new FormControl(1));
-        this.userForm.removeControl("TamilnaduCity");
-      }
-    });
-    this.userForm.get("americaState").valueChanges.subscribe(data =>{
-      if(data == "New-york") {
-        this.americavalue = true;
-        this.userForm.addControl("newyork-city", new FormControl(1));
-        this.userForm.removeControl("California");
-      }
-      else{
-        this.americavalue = false;
-        this.userForm.addControl("California", new FormControl(1));
-        this.userForm.removeControl("newyork-city");
-      }
+      'addresses' : new FormArray([
+          this.createAddress()
+      ])
     });
   }
 
-  ngOnInit(): void {
+  createAddress() {
+    return new FormGroup({
+      'line1' : new FormControl('', Validators.required),
+      'line2' : new FormControl('', Validators.required),
+      'country' : new FormControl('', Validators.required),
+      'state' : new FormControl('', Validators.required),
+      'city' : new FormControl('', Validators.required)
+    })
+  }
+
+  addAddress() {
+    let addressArray = this.userForm.get('addresses') as FormArray;
+    addressArray.push(this.createAddress())
+  }
+
+  removeAddress(index) {
+    let address = this.userForm.get('addresses') as FormArray;
+    address.removeAt(index);
   }
   onSubmit() {
     if (this.userForm.valid) {
       console.log(this.userForm.value);
+      this.apiService.submit(this.userForm.value).subscribe((data) => {
+        alert('success');
+      })
     }
-}
+  }
+
+  ngOnInit(): void {
+  }
 }

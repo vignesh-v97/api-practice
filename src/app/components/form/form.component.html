@@ -1,134 +1,121 @@
-    <div class="col-sm-12">
-      <form [formGroup]="userForm" (ngSubmit)="onSubmit()" class="form-horizontal col-sm-12">
-        <div class="form-group col-sm-4">
-          <label class="col-form-label">Name</label>
-          <input formControlName="name" type="text" class="form-control" placeholder="Name" />
-        </div>
-        <div class="form-group col-sm-4">
-          <label class="col-form-label">Email</label>
-          <input formControlName="email" type="email" class="form-control" placeholder="email" />
-        </div>
-        <div class="form-group col-sm-4">
-          <label class="col-form-label">Password</label>
-          <input formControlName="Password" type="password" class="form-control" placeholder="Password" />
-        </div>
-        <!-- COUNTRY / STATE DROPDOWN -->
-        <div class="">
-          <div class="form-group col-sm-4">
-            <label class="col-form-label">Country</label>
-            <select formControlName="nation" class="form-control">
-              <option value="india">India</option>
-              <option value="america">America</option>
-            </select>
-          </div>
-          <div class="form-group col-sm-4" *ngIf="this.num == true">
-            <label class="col-form-label">state</label>
-            <select formControlName="india" class="form-control">
-              <option value="Tamilnadu">Tamilnadu</option>
-              <option value="Kerala">Kerala</option>
-            </select>
-          </div>
-          <div class="form-group col-sm-4" *ngIf="this.num == false">
-            <label class="col-form-label">state</label>
-            <select class="form-control" formControlName="americaState">
-              <option value="New-york">New york</option>
-              <option value="California">California</option>
-            </select>
-          </div>
-        </div>
-        <!-- ENDED -->
+      <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+        <div class="container d-flex">
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="row">
+                <div class="col-sm-12">
+                  <div class="form-group">
+                    <label class="col-form-label">Name</label>
+                    <input formControlName="name" type="text" class="form-control" placeholder="Name" />
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-12">
+                  <div class="form-group">
+                    <label class="col-form-label">Email</label>
+                    <input formControlName="email" type="email" class="form-control" placeholder="email" />
+                  </div>
+                </div>
+              </div>
 
-        <!-- (INDIA)CITY DROPDOWN -->
-        <div class="">
-          <div class="form-group col-sm-4" *ngIf="this.value == true">
-            <label class="col-form-label">City</label>
-            <select formControlName="TamilnaduCity" class="form-control">
-              <option value="madurai">madurai</option>
-              <option value="siavagangai">sivagangai</option>
-            </select>
-          </div>
-          <div class="form-group col-sm-4" *ngIf="this.value == false">
-            <label class="col-form-label">City</label>
-            <select class="form-control">
-              <option value="keralaOne">keralaOne</option>
-              <option value="keralaTwo">keralaTwo</option>
-            </select>
-          </div>
-        </div>
-        <!-- ENDED -->
+              <div class="row">
+                <div class="col-sm-6">
+                  <label class="col-form-label">Gender</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input formControlName="Gender" class="form-check-input" type="radio" value="Male">
+                  <label class="form-check-label">Male</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input formControlName="Gender" class="form-check-input" type="radio" value="Female">
+                  <label class="form-check-label">Female</label>
+                </div>
+                <div class="col-sm-12 d-flex justify-content-between" formArrayName="favFood">
+                  <label class="col-form-label">Favourite cuisine</label>
+                  <div class="form-check form-check-inline" formGroupName="0">
+                    <input formControlName="indian" class="form-check-input" type="checkbox" value="option1">
+                    <label class="form-check-label">Indian</label>
+                  </div>
+                  <div class="form-check form-check-inline" formGroupName="1">
+                    <input formControlName="chinese" class="form-check-input" type="checkbox" value="option2">
+                    <label class="form-check-label">Chinese</label>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-6">
+                  <h3>Addresses</h3>
+                </div>
+                <div class="col-sm-6">
+                  <button (click)="addAddress()" class="btn btn-sm btn-primary float-right">Add Addresses</button>
+                </div>
+              </div>
+              <div class="row" formArrayName="addresses" *ngFor="let address of userForm.get('addresses')['controls']; let i=index;" style="background-color: whitesmoke; border: 1px solid #dedede; margin-top: 15px; margin-bottom: 15px;">
+                <!-- <fa-icon icon="times-circle" class="position-relative" style="left: 416px;top:-162px"></fa-icon> -->
+                <div [formGroupName]="i" class="col-sm-12">
+                  <div class="row">
+                    <div class="col-sm-6">
+                      <div class="form-group">
+                        <label for="">Address Line 1</label>
+                        <input formControlName="line1" name="line1" type="text" class="form-control">
+                      </div>
+                    </div>
+                    <div class="col-sm-6">
+                      <div class="form-group">
+                        <label for="">Address Line 2</label>
+                        <input formControlName="line2" name="line2" type="text" class="form-control">
+                      </div>
+                    </div>
+                    <div class="row col-sm-12">
+                      <div class="col-sm-4">
+                        <div class="form-group">
+                          <label class="col-form-label">Country</label>
+                          <select formControlName="country" name="country" class="form-control">
+                            <option value="IN">India</option>
+                            <option value="US">America</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="col-sm-4">
+                        <div class="form-group">
+                          <label class="col-form-label">state</label>
+                          <select formControlName="state" name="state" class="form-control">
+                            <option value="TN">Tamilnadu</option>
+                            <option value="KL">Kerala</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="col-sm-4">
+                        <div class="form-group">
+                          <label class="col-form-label">City</label>
+                          <select formControlName="city" name="city" class="form-control">
+                            <option value="MDU">madurai</option>
+                            <option value="SVG">sivagangai</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="col-sm-12 text-center">
+                        <button class="btn btn-primary" (click)="removeAddress(i)">Close</button>
+                      </div>
+                  </div>
+                </div>
+              </div>
+              </div>
 
-        <!-- (AMERICA)CITY DROPDOWN -->
-        <div class="">
-          <div class="form-group col-sm-4" *ngIf="this.americavalue == true">
-            <label class="col-form-label">City</label>
-            <select formControlName="newyork-city" class="form-control">
-              <option value="newyorkOne">newyorkOne</option>
-              <option value="newyorkTwo">newyorkTwo</option>
-            </select>
-          </div>
-          <div class="form-group col-sm-4 "*ngIf="this.americavalue == false">
-                <label class="col-form-label">City</label>
-                <select class="form-control">
-                  <option value="CaliforniaOne">CaliforniaOne</option>
-                  <option value="CaliforniaTwo">CaliforniaTwo</option>
-                </select>
-          </div>
-        </div>
-        <!-- ENDED -->
+              <div class="row">
+                <div class="form-group col-sm-4"></div>
+                <div class="form-group col-sm-4">
+                  <div class="buttonAlign">
+                    <button type="submit" class="btn btn-primary signIn">
+                      Submit
+                    </button>
+                  </div>
+                </div>
+              </div>
 
-
-        <!-- RADIO buttons and CHECKBOX -->
-        <div class="form-group col-sm-4">
-          <label class="col-form-label">Gender</label>
-          <div class="">
-            <div class="form-check form-check-inline">
-              <input formControlName="Gender" class="form-check-input" type="radio" value="Male">
-              <label class="form-check-label">Male</label>
-            </div>
-            <div class="form-check form-check-inline">
-              <input formControlName="Gender" class="form-check-input" type="radio" value="Female">
-              <label class="form-check-label">Female</label>
-            </div>
-          </div>
-        </div>
-        <div class="form-group col-sm-4">
-          <label class="col-form-label">Marrital Status</label>
-          <div class="">
-            <div class="form-check form-check-inline">
-              <input formControlName="status" class="form-check-input" type="radio" value="married">
-              <label class="form-check-label">married</label>
-            </div>
-            <div class="form-check form-check-inline">
-              <input formControlName="status" class="form-check-input" type="radio" value="unmarried">
-              <label class="form-check-label">unmarried</label>
-            </div>
-          </div>
-        </div>
-
-        <div class="">
-          <div class="form-group col-sm-4" formArrayName="favcolour">
-            <label class="col-form-label">Favourite colour</label>
-            <div formGroupName="0" class="form-check form-check-inline">
-              <input formControlName="Black" class="form-check-input" type="checkbox" id="inlineCheckbox1"
-                value="option1">
-              <label class="form-check-label" for="inlineCheckbox1">Black</label>
-            </div>
-            <div formGroupName="1" class="form-check form-check-inline">
-              <input formControlName="white" class="form-check-input" type="checkbox" id="inlineCheckbox2"
-                value="option2">
-              <label class="form-check-label" for="inlineCheckbox2">White</label>
-            </div>
-          </div>
-        </div>
-        <div class="">
-          <div class="form-group col-sm-4"></div>
-          <div class="form-group col-sm-4">
-            <div class="buttonAlign">
-              <button type="submit" class="btn btn-primary signIn ">
-                Submit
-              </button>
+              <pre><code>{{ userForm.valid | json }}</code></pre>
             </div>
           </div>
         </div>
       </form>
-    </div>
