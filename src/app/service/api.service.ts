@@ -1,11 +1,15 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Student } from 'src/app/api';
 import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService {
+
+  private students: Student[] = [];
+
   constructor(
     private http: HttpClient
   ) { }
@@ -22,4 +26,8 @@ getweather = (value) => {
 submit(data):Observable<any> {
   return this.http.post(`https://5cdd0a92b22718001417c19d.mockapi.io/api/users`,data)
 }
+getStudents() {
+    return this.http.get(`https://5cdd0a92b22718001417c19d.mockapi.io/api/users`)
+  }
+
 }

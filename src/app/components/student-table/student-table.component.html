@@ -1,0 +1,27 @@
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">E-Mail</th>
+      <th scope="col" sortable="true">Gender</th>
+      <th scope="col">UserName</th>
+      <th scope="col">Realm</th>
+      <th scope="col">Actions</th>
+
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let rowdata of rowdatas; let index = i">
+      <th scope="row">{{rowdata.id}}</th>
+      <td>{{ rowdata.name }}</td>
+      <td>{{ rowdata.email }}</td>
+      <td>{{ rowdata.Gender }}</td>
+      <td>{{ rowdata.username }}</td>
+      <td>{{ rowdata.realm }}</td>
+      <td>
+        <button (click)="viewDetail(rowdata)" class="btn btn-info">View</button>
+      </td>
+    </tr>
+  </tbody>
+</table>

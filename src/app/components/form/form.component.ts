@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl,FormArray,Validators,ReactiveFormsModule} from "@angular/forms";
 import { ApiService } from 'src/app/service/api.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-form',
@@ -9,7 +10,8 @@ import { ApiService } from 'src/app/service/api.service';
 })
 export class FormComponent implements OnInit {
   userForm:FormGroup;
-  constructor(public apiService:ApiService) {
+
+  constructor(public apiService:ApiService, public route:Router) {
     this.userForm = new FormGroup({
       'name': new FormControl(null, Validators.required),
       'email': new FormControl(null, [Validators.required, Validators.email,Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]),
@@ -54,6 +56,10 @@ export class FormComponent implements OnInit {
         alert('success');
       })
     }
+  }
+
+  open() {
+    this.route.navigateByUrl(`/view-list`);
   }
 
   ngOnInit(): void {
